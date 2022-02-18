@@ -1,0 +1,33 @@
+.user-module {
+    display: flex;
+    background-color: #d0d0d0;
+    height: 25em;
+    width: 50em;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.user-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 15px auto 15px auto;
+}
+
+.user-input {
+    display: block;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    margin: 5px 15px;
+}
+
+.user-input__control {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input.user-input__control {
+    padding: 5px;
+}
