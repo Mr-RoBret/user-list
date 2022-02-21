@@ -1,7 +1,8 @@
-.user-module {
-    display: block;
+.user-list-module {
+    display: flex;
     background-color: #d0d0d0;
     /* height: 25em; */
-    width: 100%;
+    width: 50em;
     border-radius: 15px;
+    align-items: center;
 }

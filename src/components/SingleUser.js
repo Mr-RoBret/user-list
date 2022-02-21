@@ -6,7 +6,7 @@ const SingleUser = (props) => {
     return (
         <div className="user-module">
             <div className="user-info-box">
-                {props.name};
+                {`${props.name} ${props.year}`};
             </div>
         </div>
     );
