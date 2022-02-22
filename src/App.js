@@ -7,10 +7,11 @@ import './App.css';
 function App() {
   const [userList, setUserList] = useState([]);
 
-  const handleNewUser = (props) => {
-    setUserList((prevUserList) => [
-      ...prevUserList, props.userInput
-    ])
+  const handleNewUser = (newUser, newAge) => {
+    setUserList((prevUserList) => {
+      return [...prevUserList, { name: newUser, age: newAge }];
+    })
+    console.log(userList);
   };
 
   return (

@@ -3,12 +3,30 @@ import React, { useState } from "react";
 import './UserForm.css';
 import Button from './UI/Button';
 
-const UserForm = () => {
+const UserForm = (props) => {
 
     const [userInput, setUserInput] = useState({
         enteredUser: '',
         enteredAge: '',
     });
+
+    const submitHandler = (event) => {
+        event.preventDefault();
+        console.log(userInput.enteredUser);
+        console.log(userInput.enteredAge);
+
+        if (userInput.enteredUser.trim().length === 0 || userInput.enteredAge.trim().length === 0) {
+            return;
+        }
+        if (+userInput.enteredAge < 1) {
+            return;
+        }
+        props.onAddUser(userInput.enteredUser, userInput.enteredAge);
+        setUserInput({
+            enteredUser: '',
+            enteredAge: '',
+        });
+    }
 
     const handleUserName = (event) => {
         setUserInput((prevState) => {
@@ -23,24 +41,6 @@ const UserForm = () => {
             enteredAge: event.target.value };
         });
     };
-
-    const submitHandler = (event) => {
-        event.preventDefault();
-        console.log(userInput.enteredUser);
-        console.log(userInput.enteredAge);
-
-        if (userInput.enteredUser.trim().length === 0 || userInput.enteredAge.trim().length === 0) {
-            return;
-        }
-        if (+userInput.enteredAge < 1) {
-            return;
-        }
-        
-        setUserInput({
-            enteredUser: '',
-            enteredAge: '',
-        });
-    }
 
     return (
         <form onSubmit={submitHandler}>

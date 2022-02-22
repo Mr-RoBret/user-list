@@ -4,10 +4,10 @@ import './SingleUser.css';
 
 const SingleUser = (props) => {
     return (
-        <div className="user-module">
-            <div className="user-info-box">
-                {`${props.name} ${props.year}`};
-            </div>
+        <div className="user-info-box">
+            <li>
+                {props.name} ({props.age} years old)
+            </li>
         </div>
     );
 };
