@@ -2,8 +2,14 @@
     display: block;
     padding: .75em 0;
     margin-bottom: 1.5em;
-    background-color: #d0d0d0;
+    background-color: #ffffff;
     /* height: 25em; */
     width: 50em;
     border-radius: 15px;
+}
+
+.user-info-box {
+    border: solid 1px black;
+    padding: 7px 10px;
+    margin: 15px;
 }
