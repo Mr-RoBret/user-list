@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import './UserForm.css';
 import Button from './UI/Button';
+import Modal from './UI/Modal';
 
 const UserForm = (props) => {
 
@@ -9,23 +10,31 @@ const UserForm = (props) => {
         enteredUser: '',
         enteredAge: '',
     });
-
+    const [error, setError] = useState();
+    
     const submitHandler = (event) => {
         event.preventDefault();
         console.log(userInput.enteredUser);
         console.log(userInput.enteredAge);
-
+        
         if (userInput.enteredUser.trim().length === 0 || userInput.enteredAge.trim().length === 0) {
-            return;
+            setError({
+                title: 'Invalid Input',
+                message: 'Please enter a valid name and age (non-empty values).'
+            });
         }
         if (+userInput.enteredAge < 1) {
-            return;
+            setError({
+                title: 'Invalid Age',
+                message: 'Please enter a valid age (geater than 0).'
+            });
         }
-        props.onAddUser(userInput.enteredUser, userInput.enteredAge);
+        props.onAddUser(userInput.enteredUser, userInput.enteredAge);    
+        
         setUserInput({
             enteredUser: '',
             enteredAge: '',
-        });
+        });    
     }
 
     const handleUserName = (event) => {
@@ -43,23 +52,26 @@ const UserForm = (props) => {
     };
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className="user-module">
-                <div className="user-inputs">
-                    <div className="user-input">
-                        <label htmlFor="user name" className="user-input__control">Username</label>
-                        <input type="text" value={userInput.enteredUser} className="user-input__control" onChange={handleUserName}/>
-                    </div>
-                    <div className="user-input">
-                        <label htmlFor="age" className="user-input__control">Age (Years)</label>
-                        <input type="text" value={userInput.enteredAge} className="user-input__control" onChange={handleUserAge} />
-                    </div>
-                    <div className="user-input">
-                        <Button type="submit" />
+        <div>
+            {error && <Modal title={error.title} message={error.message} />}
+            <form onSubmit={submitHandler}>
+                <div className="user-module">
+                    <div className="user-inputs">
+                        <div className="user-input">
+                            <label htmlFor="user name" className="user-input__control">Username</label>
+                            <input type="text" value={userInput.enteredUser} className="user-input__control" onChange={handleUserName}/>
+                        </div>
+                        <div className="user-input">
+                            <label htmlFor="age" className="user-input__control">Age (Years)</label>
+                            <input type="text" value={userInput.enteredAge} className="user-input__control" onChange={handleUserAge} />
+                        </div>
+                        <div className="user-input">
+                            <Button type="submit" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 };
 

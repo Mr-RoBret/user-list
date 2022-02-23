@@ -1,0 +1,17 @@
+.modal-style {
+    display: flex;
+    flex-direction: column;
+    /* padding: .75em 0; */
+    margin-bottom: 1.5em;
+    background-color: #ffffff;
+    /* height: 25em; */
+    width: 50em;
+    border-radius: 15px;
+}
+
+.modal-header {
+    display: block;
+    align-items: flex-start;
+    background-color: blueviolet;
+    color: white;
+}
