@@ -22,15 +22,16 @@ const UserForm = (props) => {
                 title: 'Invalid Input',
                 message: 'Please enter a valid name and age (non-empty values).'
             });
+            return;
         }
         if (+userInput.enteredAge < 1) {
             setError({
                 title: 'Invalid Age',
                 message: 'Please enter a valid age (geater than 0).'
             });
+            return;
         }
         props.onAddUser(userInput.enteredUser, userInput.enteredAge);    
-        
         setUserInput({
             enteredUser: '',
             enteredAge: '',
@@ -51,9 +52,13 @@ const UserForm = (props) => {
         });
     };
 
+    const errorHandler = () => {
+        setError(null);
+    };
+
     return (
         <div>
-            {error && <Modal title={error.title} message={error.message} />}
+            {error && <Modal title={error.title} message={error.message} onConfirm={errorHandler} />}
             <form onSubmit={submitHandler}>
                 <div className="user-module">
                     <div className="user-inputs">
